@@ -12,17 +12,21 @@
 	<div class="marg-div">
 		<MainModal />
 	</div>
+	<div class="marg-div">
+		<MainRepositorios />
+	</div>
 </template>
 
 <script>
 import base from "@/mixins/base";
 import MainMenu from "./components/MainMenu.vue";
 import MainModal from "./components/MainModal.vue";
+import MainRepositorios from "./components/MainRepositorios.vue";
 
 export default {
 	name: "App",
 	mixins: [base],
-	components: { MainMenu, MainModal },
+	components: { MainMenu, MainModal, MainRepositorios },
 	data() {
 		return {
 			show: false,
