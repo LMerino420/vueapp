@@ -1,15 +1,25 @@
 <template>
-	<div>COMPOSITION API confi..</div>
+	<div>
+		Composition <br />
+		{{ texto }} <br />
+		{{ contador }}
+	</div>
 </template>
 
 <script>
-import { onMounted } from "vue";
+import { reactive, ref } from "vue";
 
 export default {
 	setup() {
-		onMounted(() => {
-			console.log("MOUNTED");
-		});
+		const contador = reactive({ counter: 0 });
+		const texto = ref("Esto es un texto con ref");
+
+		setInterval(() => contador.counter++, 500);
+
+		return {
+			contador,
+			texto,
+		};
 	},
 };
 </script>
