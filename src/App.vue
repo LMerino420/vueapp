@@ -1,6 +1,7 @@
 <template>
 	<div class="marg-div">
-		{{ textoCL }}
+		{{ textoCL }} <br />
+		{{ mixinText }}
 	</div>
 	<div class="marg-div">
 		<button @click="show = !show">MENU</button>
@@ -14,10 +15,13 @@
 </template>
 
 <script>
+import base from "@/mixins/base";
 import MainMenu from "./components/MainMenu.vue";
 import MainModal from "./components/MainModal.vue";
+
 export default {
 	name: "App",
+	mixins: [base],
 	components: { MainMenu, MainModal },
 	data() {
 		return {
