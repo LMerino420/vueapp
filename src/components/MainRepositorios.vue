@@ -2,20 +2,25 @@
 	<div>
 		<h3>Composition [Variables Reactivas]</h3>
 		[REF] ----> {{ texto }}<br />
-		[REACTIVE | WATCHER] ----> {{ contador }} <br />
-		[COMPUTED] ----> {{ fullName }}
+		[REACTIVE/WATCHER] ----> {{ contador }} <br />
+		[COMPUTED] ----> {{ fullName }} <br />
+		[PROVEDE/INJECT] ----> {{ usrName }}
 	</div>
 </template>
 
 <script>
-import { reactive, ref, watch, computed } from "vue";
+import { reactive, ref, watch, computed, toRefs, inject } from "vue";
 
 export default {
-	setup() {
+	props: {
+		firstName: String,
+		lastName: String,
+	},
+	setup(props, context) {
+		console.log("CONTEXT =>", context);
 		const contador = reactive({ counter: 0 });
 		const texto = ref("Texto con ref");
-		const firstName = ref("Lev");
-		const lastName = ref("Merino");
+		const { firstName, lastName } = toRefs(props);
 
 		let inter = setInterval(() => contador.counter++, 400);
 
@@ -24,7 +29,7 @@ export default {
 			(actual, anterior) => {
 				console.log("VAL INTER=>", actual);
 				console.log("Val ANT=>", anterior);
-				if (actual == 15) {
+				if (actual == 5) {
 					console.log("llego a su limite");
 					clearInterval(inter);
 				}
@@ -35,10 +40,13 @@ export default {
 			return `${firstName.value} ${lastName.value}`;
 		});
 
+		const usrName = inject("userName");
+
 		return {
 			contador,
 			texto,
 			fullName,
+			usrName,
 		};
 	},
 };

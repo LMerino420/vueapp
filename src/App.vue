@@ -13,7 +13,7 @@
 		<MainModal />
 	</div>
 	<div class="marg-div">
-		<MainRepositorios />
+		<MainRepositorios first-Name="Lev Andrei" last-Name="Merino Torres" />
 	</div>
 </template>
 
@@ -22,6 +22,7 @@ import base from "@/mixins/base";
 import MainMenu from "./components/MainMenu.vue";
 import MainModal from "./components/MainModal.vue";
 import MainRepositorios from "./components/MainRepositorios.vue";
+import { provide } from "vue";
 
 export default {
 	name: "App",
@@ -41,6 +42,9 @@ export default {
 	},
 	mounted() {
 		console.log("Mounted =>", this.data, this.$el);
+	},
+	setup() {
+		provide("userName", "GreenSoul96");
 	},
 };
 </script>
